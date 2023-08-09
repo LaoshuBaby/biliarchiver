@@ -41,6 +41,7 @@ def parse_args():
     parser.add_argument('--fb', '--from-browser', dest='from_browser', type=str, help='从指定浏览器导入 cookies (否则导入 config.json 中的 cookies_file) [default: None]', default=None)
     parser.add_argument('--min-free-space-gb', dest='min_free_space_gb', type=int, help='最小剩余空间 (GB)，用超退出 [default: 10]', default=10)
     parser.add_argument('--skip-to', dest='skip_to', type=int, help='跳过前 skip_to 个 bvid [default: 0]', default=0)
+    parser.add_argument('--bvid', dest='bvid', type=str, help='指定一个BVID直接存 [default: None]', default=None)
 
     args = Args(**vars(parser.parse_args()))
 
