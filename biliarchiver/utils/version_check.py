@@ -1,4 +1,5 @@
 import requests
+import platform
 
 from biliarchiver.exception import VersionOutdatedError
 
@@ -29,7 +30,10 @@ def check_outdated_version(pypi_project: str, self_version: str, raise_error: bo
         print('=' * 47)
         print(f'Warning: You are using an outdated version of {pypi_project} ({self_version}).')
         print(f'         The latest version is {latest_version}.')
-        print(f'         You can update {pypi_project} with "pip3 install --upgrade {pypi_project}".')
+        if platform.system() == "Windows":
+            print(f'         You can update {pypi_project} with "pip install --upgrade {pypi_project}".') # Windows use latest pip directly
+        else:
+            print(f'         You can update {pypi_project} with "pip3 install --upgrade {pypi_project}".')
         print('=' * 47, end='\n\n')
         if raise_error:
             raise VersionOutdatedError(version=self_version)
